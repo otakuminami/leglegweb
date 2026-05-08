@@ -1,5 +1,6 @@
 const express = require('express');
 const https = require('https');
+require('dotenv').config({ path: __dirname + '/.env' });
 
 const app = express();
 app.use(express.json({ limit: '10mb' }));
