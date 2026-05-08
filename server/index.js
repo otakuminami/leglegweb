@@ -17,7 +17,8 @@ function uploadToOSS(imageBase64) {
     const path = `/${name}`;
     const resource = `/${bucket}${path}`;
 
-    const stringToSign = `PUT\n\n\n${date}\n${resource}`;
+    const contentType = 'image/jpeg';
+    const stringToSign = `PUT\n\n${contentType}\n${date}\n${resource}`;
     const sig = crypto.createHmac('sha1', process.env.OSS_ACCESS_KEY_SECRET).update(stringToSign).digest('base64');
 
     const req = https.request({
@@ -26,7 +27,7 @@ function uploadToOSS(imageBase64) {
       path: path,
       headers: {
         'Date': date,
-        'Content-Type': 'image/jpeg',
+        'Content-Type': contentType,
         'Content-Length': buf.length,
         'Authorization': `OSS ${process.env.OSS_ACCESS_KEY_ID}:${sig}`
       }
