@@ -1,9 +1,24 @@
 const express = require('express');
 const https = require('https');
+const crypto = require('crypto');
+const OSS = require('ali-oss');
 require('dotenv').config({ path: __dirname + '/.env' });
 
 const app = express();
 app.use(express.json({ limit: '10mb' }));
+
+const ossClient = new OSS({
+  region: process.env.OSS_REGION,
+  accessKeyId: process.env.OSS_ACCESS_KEY_ID,
+  accessKeySecret: process.env.OSS_ACCESS_KEY_SECRET,
+  bucket: process.env.OSS_BUCKET
+});
+
+function uploadToOSS(imageBase64) {
+  const buf = Buffer.from(imageBase64, 'base64');
+  const name = `${new Date().toISOString().replace(/[:.]/g, '-')}_${crypto.randomBytes(4).toString('hex')}.jpg`;
+  return ossClient.put(name, buf).then(r => r.url).catch(e => console.error('OSS upload failed:', e.message));
+}
 
 const SYSTEM_PROMPTS = {
   zh: `你是人体测量分析师。根据照片中人物和参照物估算腿长(髋到脚踝，cm)。
@@ -44,6 +59,9 @@ app.post('/api/analyze', (req, res) => {
   if (!imageBase64) {
     return res.status(400).json({ success: false, error: '请上传图片' });
   }
+
+  // 异步存 OSS，不阻塞响应
+  uploadToOSS(imageBase64);
 
   const body = JSON.stringify({
     model: 'qwen3-vl-flash',
