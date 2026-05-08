@@ -1,23 +1,46 @@
 const express = require('express');
 const https = require('https');
 const crypto = require('crypto');
-const OSS = require('ali-oss');
 require('dotenv').config({ path: __dirname + '/.env' });
 
 const app = express();
 app.use(express.json({ limit: '10mb' }));
 
-const ossClient = new OSS({
-  region: process.env.OSS_REGION,
-  accessKeyId: process.env.OSS_ACCESS_KEY_ID,
-  accessKeySecret: process.env.OSS_ACCESS_KEY_SECRET,
-  bucket: process.env.OSS_BUCKET
-});
-
 function uploadToOSS(imageBase64) {
-  const buf = Buffer.from(imageBase64, 'base64');
-  const name = `${new Date().toISOString().replace(/[:.]/g, '-')}_${crypto.randomBytes(4).toString('hex')}.jpg`;
-  return ossClient.put(name, buf).then(r => r.url).catch(e => console.error('OSS upload failed:', e.message));
+  return new Promise((resolve, reject) => {
+    const buf = Buffer.from(imageBase64, 'base64');
+    const name = `${new Date().toISOString().replace(/[:.]/g, '-')}_${crypto.randomBytes(4).toString('hex')}.jpg`;
+    const date = new Date().toUTCString();
+    const bucket = process.env.OSS_BUCKET;
+    const region = process.env.OSS_REGION;
+    const host = `${bucket}.${region}.aliyuncs.com`;
+    const path = `/${name}`;
+    const resource = `/${bucket}${path}`;
+
+    const stringToSign = `PUT\n\n\n${date}\n${resource}`;
+    const sig = crypto.createHmac('sha1', process.env.OSS_ACCESS_KEY_SECRET).update(stringToSign).digest('base64');
+
+    const req = https.request({
+      hostname: host,
+      method: 'PUT',
+      path: path,
+      headers: {
+        'Date': date,
+        'Content-Type': 'image/jpeg',
+        'Content-Length': buf.length,
+        'Authorization': `OSS ${process.env.OSS_ACCESS_KEY_ID}:${sig}`
+      }
+    }, (res) => {
+      if (res.statusCode === 200) {
+        resolve(`https://${host}${path}`);
+      } else {
+        reject(new Error(`OSS returned ${res.statusCode}`));
+      }
+    });
+    req.on('error', reject);
+    req.write(buf);
+    req.end();
+  }).catch(e => console.error('OSS upload failed:', e.message));
 }
 
 const SYSTEM_PROMPTS = {
