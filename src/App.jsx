@@ -506,6 +506,17 @@ export default function App() {
       <section className="hero">
         <h1>{t.heroTitle}</h1>
         <p className="hero-subtitle">{t.heroSubtitle}</p>
+        <div className="hero-lang">
+          <svg className="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <ellipse cx="12" cy="12" rx="4" ry="10"/>
+            <path d="M2 12h20"/>
+          </svg>
+          <span>{lang === 'zh' ? '默认中文页面，' : 'Default English, '}</span>
+          <button className="lang-link" onClick={toggleLang}>
+            {lang === 'zh' ? 'Switch to English →' : '切换到中文 →'}
+          </button>
+        </div>
       </section>
 
       <main className="section">

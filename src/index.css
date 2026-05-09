@@ -121,6 +121,41 @@ body {
   margin: 0 auto;
 }
 
+.hero-lang {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 24px;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: -0.24px;
+}
+
+.globe-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--apple-blue);
+  flex-shrink: 0;
+}
+
+.lang-link {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--link-blue);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  letter-spacing: -0.24px;
+}
+
+.lang-link:hover {
+  text-decoration: underline;
+}
+
 /* --- Section --- */
 .section {
   padding: 48px 32px;
