@@ -292,7 +292,7 @@ export default function App() {
       </div>
       <div style="text-align:center;padding:${PAD}px ${PAD}px ${PAD}px;font-size:18px;font-weight:400;color:rgba(0,0,0,0.3);line-height:1.6;">
         腿腿 · Leggy<br/>
-        <span style="font-size:14px;">leglegweb.vercel.app</span>
+        <span style="font-size:14px;">${window.location.hostname}</span>
       </div>
     </body></html>`;
 
