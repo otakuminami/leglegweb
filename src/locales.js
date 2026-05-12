@@ -74,8 +74,8 @@ const zh = {
 };
 
 const en = {
-  navTitle: 'BaseGuess',
-  heroTitle: 'BaseGuess',
+  navTitle: 'NahGuess',
+  heroTitle: 'NahGuess',
   heroSubtitle: 'How long are her legs? One snap, you\'ll know.',
   uploadText: 'Upload a Photo',
   uploadHint: 'Take a photo or choose from gallery, auto-compressed',
@@ -101,7 +101,7 @@ const en = {
   resultLabel: 'Estimated Leg Length',
   resultReference: 'Reference',
   resultReasoning: 'Reasoning',
-  saveFilename: 'BaseGuess',
+  saveFilename: 'NahGuess',
   saveWechatHint: 'Tap ··· in top right → Save Image',
   saveClose: 'Close',
   loadingTips: [

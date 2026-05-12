@@ -292,7 +292,7 @@ export default function App() {
         ${reasoningSection}
       </div>
       <div style="text-align:center;padding:${PAD}px ${PAD}px ${PAD}px;font-size:18px;font-weight:400;color:rgba(0,0,0,0.3);line-height:1.6;">
-        基本瞎猜 · BaseGuess<br/>
+        基本瞎猜 · NahGuess<br/>
         <span style="font-size:14px;">${window.location.hostname}</span>
       </div>
     </body></html>`;
