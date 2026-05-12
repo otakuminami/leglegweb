@@ -281,6 +281,7 @@ export default function App() {
         <p style="font-size:24px;font-weight:400;color:rgba(255,255,255,0.7);margin:0 0 12px;letter-spacing:-0.24px;">${t.resultLabel}</p>
         <span style="font-size:160px;font-weight:600;line-height:1.07;letter-spacing:-0.28px;">${result.legLengthCm}</span>
         <span style="font-size:48px;font-weight:400;color:rgba(255,255,255,0.7);margin-left:8px;">cm</span>
+        <p style="font-size:18px;font-weight:400;color:rgba(255,255,255,0.36);margin:12px 0 0;letter-spacing:0;">${t.aiDisclaimer}</p>
       </div>
       ${photoHtml}
       <div style="padding:${PAD}px;">
@@ -435,6 +436,7 @@ export default function App() {
                       <span className="result-value">{result.legLengthCm}</span>
                       <span className="result-unit">cm</span>
                     </div>
+                    <p className="ai-disclaimer">{t.aiDisclaimer}</p>
                   </div>
 
                   {imagePath && (
