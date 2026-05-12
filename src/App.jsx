@@ -514,7 +514,7 @@ export default function App() {
             <ellipse cx="12" cy="12" rx="4" ry="10"/>
             <path d="M2 12h20"/>
           </svg>
-          <span>{lang === 'zh' ? '默认中文页面，' : 'Default English, '}</span>
+          <span>{lang === 'zh' ? '中文页面，' : 'English, '}</span>
           <button className="lang-link" onClick={toggleLang}>
             {lang === 'zh' ? 'Switch to English →' : '切换到中文 →'}
           </button>
