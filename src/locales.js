@@ -1,11 +1,11 @@
 const zh = {
-  navTitle: '腿腿',
-  heroTitle: '腿腿',
+  navTitle: '基本瞎猜',
+  heroTitle: '基本瞎猜',
   heroSubtitle: '她腿多长，拍一张就知道了',
   uploadText: '点击上传照片',
   uploadHint: '支持拍照或从相册选择，图片会自动压缩',
   uploadDisclaimer: '参照物法估算，结果仅供参考',
-  footer: '腿腿 — AI 腿长测量工具',
+  footer: '基本瞎猜 — AI 万能问答工具',
   btnAnalyze: '开始分析',
   btnReselect: '重新选择',
   btnRemeasure: '重新测量',
@@ -26,7 +26,7 @@ const zh = {
   resultLabel: '估算腿长',
   resultReference: '参照物',
   resultReasoning: '推理过程',
-  saveFilename: '腿腿',
+  saveFilename: '基本瞎猜',
   saveWechatHint: '点击右上角 ··· 菜单，选择「保存为图片」',
   saveClose: '关闭',
   loadingTips: [
@@ -74,8 +74,8 @@ const zh = {
 };
 
 const en = {
-  navTitle: 'Leggy',
-  heroTitle: 'Leggy',
+  navTitle: 'BaseGuess',
+  heroTitle: 'BaseGuess',
   heroSubtitle: 'How long are her legs? One snap, you\'ll know.',
   uploadText: 'Upload a Photo',
   uploadHint: 'Take a photo or choose from gallery, auto-compressed',
@@ -101,7 +101,7 @@ const en = {
   resultLabel: 'Estimated Leg Length',
   resultReference: 'Reference',
   resultReasoning: 'Reasoning',
-  saveFilename: 'Leggy',
+  saveFilename: 'BaseGuess',
   saveWechatHint: 'Tap ··· in top right → Save Image',
   saveClose: 'Close',
   loadingTips: [
