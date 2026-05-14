@@ -1,8 +1,10 @@
-# 基本瞎猜 BaseGuess — AI 万能问答工具
+# 基本瞎猜 NahGuess — AI 万能问答工具
 
 ## 项目概要
 
-用户上传照片 → AI 分析参照物 → 估算腿长（髋到脚踝，cm）→ 结果页 + 保存卡片图片。
+用户上传照片 → AI 分析参照物 → 估算腿长（髋到脚踝，cm）→ 结果页（含"内容由AI生成"标识）+ 保存卡片图片。
+
+品牌名：**基本瞎猜 · NahGuess**，主色鹅黄 `#FDE68A`，定位为自嘲反差型万能问答工具。
 
 ## 技术架构
 
@@ -17,6 +19,9 @@
 - **图片压缩**: 前端 Canvas 压缩到 1024px 宽，quality 0.6，输出 JPEG base64
 - **流式响应**: SSE (Server-Sent Events)，Nginx 需 `proxy_buffering off`
 - **卡片生成**: html2canvas + iframe（1080px 宽隔离 viewport，避免移动端渲染错位）
+- **合规标识**: 结果页和保存卡片均显示"内容由AI生成"（法规要求）
+- **语言切换**: 首页 hero 区 globe 图标 + 文字提示，英文无需默认字样
+- **卡片域名**: 保存图片自动使用 `window.location.hostname`，国内/国际双域名自动切换
 
 ## 双环境部署
 
